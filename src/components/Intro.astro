@@ -1,0 +1,32 @@
+---
+const {data} = Astro.props
+---
+<style>
+    section {
+        margin-top:6rem;
+    }
+    img+div {
+        display:flex;
+        gap:2rem;
+        margin-top:2rem;
+    }
+    img+div span {
+        border:1px solid gray;
+        padding:4px;
+        border-radius:5px;
+    }
+
+</style>
+<section>
+    <a href=`/technology/${data.slug}`>
+        <div>
+            <img src='https://res.cloudinary.com/djvdendlh/image/upload/v1743370342/gratisography-cool-pineapple-free-stock-photo_o9m0wn.png' alt=''/>
+            <div>
+                <span>{data.category}</span>
+                <span>{data.author}</span>
+            </div>
+            <h1>{data.title}</h1>
+            <p>{data.excerpt}</p>
+        </div>
+    </a>
+</section>

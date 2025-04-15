@@ -1,0 +1,27 @@
+---
+const {data} = Astro.props
+---
+<style>
+    p+div{
+        display:flex;
+        align-items: start;
+    }
+    img {
+        width:90px;
+        height:90px;
+    }
+    section {
+        margin-top:2rem;
+    }
+</style>
+<section>
+    <a href=`/${data.category}/${data.slug}`>
+        <p>
+            {data.category}
+        </p>
+        <div>
+            <h3>{data.title}</h3>
+            <img src="https://res.cloudinary.com/djvdendlh/image/upload/v1743370342/gratisography-cool-pineapple-free-stock-photo_o9m0wn.png" alt="">
+        </div>
+    </a>
+</section>

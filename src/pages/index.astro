@@ -1,11 +1,120 @@
 ---
 import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from '../layouts/BaseLayout.astro';
+import BlogIntro from '../components/Intro.astro'
+import Outro from '../components/Outro.astro';
+import Slider from '../components/Slider.jsx'
+import 	PoliticsSectionSide from '../components/Politics_section_side.astro'
+import TechSection from '../components/Tech_section.astro';
+const pageTitle = 'Boxxed Homepage'
+interface BlogData {
+  id: number;
+  documentId: string;
+  title:string;
+  reading_time:number;
+  published_date:string;
+  content:string;
+  slug: string;
+  excerpt:string;
+  category:string;
+  author:string;
+  // other known properties...
+}
+const response = await fetch('https://boxxed-backend-production.up.railway.app/api/boxxeds');
+const data = await response.json();
+const introData = data.data.filter((blogData: BlogData) => {
+	return blogData.id === 10
+})
 
+const outro_data_1 = data.data.filter((data_1: BlogData) => {
+	return data_1.category === 'music'
+})
+const outro_data_2 = data.data.filter((data_2: BlogData) => {
+	return data_2.category === 'business'
+});
+const outro_data_3 = data.data.filter((data_3: BlogData) => {
+	return data_3.category === 'politics'
+})
+
+const tech_data = data.data.filter((data: BlogData) => {
+	return data.category === 'technology'
+})
+
+const latestNews: BlogData[] = data.data.slice(-5)
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
-
-<Layout>
-	<Welcome />
+<style>
+	.bg-img {
+		background-image: url('https://res.cloudinary.com/djvdendlh/image/upload/v1743370342/gratisography-cool-pineapple-free-stock-photo_o9m0wn.png');
+		height:400px;
+		background-size: cover;
+		position:relative;
+		margin-bottom:7rem;
+	}
+	.wrapper {
+		position:absolute;
+		height:30vh;
+		right:0;
+		bottom:0;
+		z-index:1;
+		padding:14rem 0 0 1.8rem;
+		border-radius:5px;
+	}
+	.bg-white {
+		background:whitesmoke;
+		padding:0.6rem 0.8rem;
+	}
+</style>
+<Layout pageTitle={pageTitle}>
+	<section>
+		<BlogIntro data={introData[0]}/>
+	</section>
+	<section>
+		<Outro data={outro_data_1[0]}/>
+		<Outro data={outro_data_2[0]}/>
+		<Outro data={outro_data_3[0]}/>
+	</section>
+	<section>
+		<h2>Latest News</h2>
+		<Slider client:load data={latestNews}/>
+	</section>
+	<section>
+		<h2>Politics News</h2>
+		<a href=`/${outro_data_3[0].category}/${outro_data_3[0].slug}`>
+			<div class="bg-img">
+				<div class="wrapper">
+					<div class="bg-white">
+						<p>{outro_data_3[0].category}</p>
+						<h3>{outro_data_3[0].title}</h3>
+						<p>by{outro_data_3[0].author}</p>
+					</div>
+				</div>
+			</div>
+		</a>
+		<div>
+		  <PoliticsSectionSide data={outro_data_3[0]}/>
+		  <PoliticsSectionSide data={outro_data_3[1]}/>
+		  <PoliticsSectionSide data={outro_data_3[2]}/>
+		</div>
+	</section>
+	<section>
+		<h2>Technology News</h2>
+		<a href=`/${tech_data[0].category}/${outro_data_3[0].slug}`>
+			<div class="bg-img">
+				<div class="wrapper">
+					<div class="bg-white">
+						<p>{tech_data[0].category}</p>
+						<h3>{tech_data[0].title}</h3>
+						<p>by{tech_data[0].author}</p>
+					</div>
+				</div>
+			</div>
+		</a>
+		<div>
+			<TechSection data={tech_data[0]}/>
+			<TechSection data={tech_data[1]}/>
+			<TechSection data={tech_data[2]}/>
+		</div>
+	</section>
 </Layout>

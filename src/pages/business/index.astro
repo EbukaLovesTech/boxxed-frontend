@@ -1,0 +1,43 @@
+---
+import Layout from '../../layouts/BaseLayout.astro';
+import FetchPost from '../../components/FetchPost';
+const API_URL = "https://boxxed-backend-production.up.railway.app/api/boxxeds";
+type Post = {
+    id: number;
+    documentId: string;
+    title: string;
+    slug: string;
+    content: string;
+    excerpt: string;
+    published_date: string;
+};
+type ApiResponse = {
+  data: Post[];
+  meta: any; // Meta data, not used here
+};
+
+let posts: Post[] = [];
+    
+try {
+    const response = await fetch(API_URL);
+    const jsonData: ApiResponse = await response.json();
+    posts = jsonData.data || [];
+} catch (error) {
+      console.error("Error fetching posts:", error);
+}
+const pageTitle = 'Business news'
+
+---
+
+
+
+<Layout pageTitle={pageTitle}>
+	<section>standing On business</section>
+    <ul>
+        {posts.map((post) => (
+            <li>
+                <a href={`/post/${post.slug}`}>{post.title}</a>
+            </li>
+        ))}
+    </ul>
+</Layout>
