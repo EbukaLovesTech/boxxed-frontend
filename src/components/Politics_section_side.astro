@@ -5,22 +5,23 @@ const {data} = Astro.props
     p+div {
         display:flex;
         align-items: start;
+        gap:0.6rem;
     }
     img {
         width:90px;
         height:90px;
     }
-    h4,p{
+    h4{
         margin:0;
+        font-size:1.13rem;
     }
     section {
     margin-top:2rem;
     }
-
 </style>
 <section>
     <a href=`/${data.category}/${data.slug}`>
-        <p>
+        <p class="tag">
             {data.category}
          </p>
         <div>

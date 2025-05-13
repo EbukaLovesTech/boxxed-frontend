@@ -2,6 +2,10 @@
 const {data} = Astro.props
 ---
 <style>
+    h1 {
+		font-size:1.7rem;
+		font-weight:bold;
+	}
     section {
         margin-top:6rem;
     }
@@ -11,9 +15,12 @@ const {data} = Astro.props
         margin-top:2rem;
     }
     img+div span {
-        border:1px solid gray;
+        border:1px solid #787d79;
         padding:4px;
         border-radius:5px;
+    }
+    p {
+        color:#353635;
     }
 
 </style>
@@ -22,8 +29,8 @@ const {data} = Astro.props
         <div>
             <img src='https://res.cloudinary.com/djvdendlh/image/upload/v1743370342/gratisography-cool-pineapple-free-stock-photo_o9m0wn.png' alt=''/>
             <div>
-                <span>{data.category}</span>
-                <span>{data.author}</span>
+                <span class="tag">{data.category}</span>
+                <span class="tag">{data.author}</span>
             </div>
             <h1>{data.title}</h1>
             <p>{data.excerpt}</p>

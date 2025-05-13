@@ -4,7 +4,7 @@ const {data} = Astro.props
 <style>
   p+div {
     display:flex;
-    align-items: center;
+    gap:0.6rem;
   }  
   img {
     width:90px;
@@ -17,7 +17,7 @@ const {data} = Astro.props
   }
   h3{
     margin:0;
-    font-size:1rem;
+    font-size:1.13rem;
   }
   .outro_section {
     border-top:1px solid rgb(202, 202, 202);
@@ -27,7 +27,7 @@ const {data} = Astro.props
 </style>
 <div class="outro_section">
   <a href=`/${data.category}/${data.slug}`>
-    <p>{data.category}</p>
+    <p class="tag">{data.category}</p>
     <div>
         <h3>{data.title}</h3>
         <img src="https://res.cloudinary.com/djvdendlh/image/upload/v1743370342/gratisography-cool-pineapple-free-stock-photo_o9m0wn.png" alt="">

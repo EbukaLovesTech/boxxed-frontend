@@ -4,9 +4,15 @@
   font-display: swap;
  }
 
+ @font-face {
+  font-family: 'bodyFont';
+  src: url('/fonts/NotoSans-VariableFont_wdth,wght.ttf') format('truetype');
+  font-display:swap;
+ }
+
 html {
-    background-color: #f1f5f9;
-    font-family: sans-serif;
+    /* background-color: #f1f5f9; */
+    font-family: bodyFont, sans-serif;
   }
 
   p {
@@ -18,7 +24,8 @@ html {
     width: 100%;
     max-width: 80ch;
     padding: 1rem;
-    line-height: 1.5;
+    line-height: 1.2;
+
   }
   h3 {
     margin:0
@@ -32,6 +39,7 @@ html {
     box-sizing: border-box;
   }
 
+  h4 {margin:0;}
   /* nav styles */
 
   .menu-toggle {
@@ -111,6 +119,12 @@ a {
   .slide_details {
     display:flex;
   }
+
+.tag {
+  color:#353635;
+  font-size:0.8rem;
+}
+
   @media screen and (min-width: 636px) {
     .nav-links {
       margin-left: 5em;

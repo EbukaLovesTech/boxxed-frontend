@@ -62,9 +62,27 @@ const latestNews: BlogData[] = data.data.slice(-5)
 		border-radius:5px;
 	}
 	.bg-white {
-		background:whitesmoke;
-		padding:0.6rem 0.8rem;
+		background:white;
+		padding:0.8rem 0.8rem;
 	}
+	.latest-news-section {
+		margin: 2.7rem 0;
+	}
+	h3 {
+		font-size:1.5rem;
+		margin:0.6rem 0;
+	}
+	h2 {
+		font-size:1.9rem;
+	}
+	.section_news {
+		margin-top: 8.5rem;
+	}
+	.politics_section,
+	.tech_section{
+		margin:5rem 0;
+	}
+
 </style>
 <Layout pageTitle={pageTitle}>
 	<section>
@@ -75,43 +93,43 @@ const latestNews: BlogData[] = data.data.slice(-5)
 		<Outro data={outro_data_2[0]}/>
 		<Outro data={outro_data_3[0]}/>
 	</section>
-	<section>
+	<section class="latest-news-section">
 		<h2>Latest News</h2>
 		<Slider client:load data={latestNews}/>
 	</section>
-	<section>
+	<section class="politics_section">
 		<h2>Politics News</h2>
 		<a href=`/${outro_data_3[0].category}/${outro_data_3[0].slug}`>
 			<div class="bg-img">
 				<div class="wrapper">
 					<div class="bg-white">
-						<p>{outro_data_3[0].category}</p>
+						<p class="tag">{outro_data_3[0].category}</p>
 						<h3>{outro_data_3[0].title}</h3>
-						<p>by{outro_data_3[0].author}</p>
+						<p class="tag">by {outro_data_3[0].author}</p>
 					</div>
 				</div>
 			</div>
 		</a>
-		<div>
+		<div class="section_news">
 		  <PoliticsSectionSide data={outro_data_3[0]}/>
 		  <PoliticsSectionSide data={outro_data_3[1]}/>
 		  <PoliticsSectionSide data={outro_data_3[2]}/>
 		</div>
 	</section>
-	<section>
+	<section class="tech_section">
 		<h2>Technology News</h2>
 		<a href=`/${tech_data[0].category}/${outro_data_3[0].slug}`>
 			<div class="bg-img">
 				<div class="wrapper">
 					<div class="bg-white">
-						<p>{tech_data[0].category}</p>
+						<p class="tag">{tech_data[0].category}</p>
 						<h3>{tech_data[0].title}</h3>
-						<p>by{tech_data[0].author}</p>
+						<p class="tag">by {tech_data[0].author}</p>
 					</div>
 				</div>
 			</div>
 		</a>
-		<div>
+		<div class="section_news">
 			<TechSection data={tech_data[0]}/>
 			<TechSection data={tech_data[1]}/>
 			<TechSection data={tech_data[2]}/>
